@@ -1,0 +1,22 @@
+{
+    "account": "test@bestsign.cn",
+    "mail": "test@bestsign.cn",
+    "mobile": "13800001234",
+    "name": "浙江xx公司",
+    "userType": "2",
+    "credential": {
+        "regCode": "5566789",
+        "taxCode": "5566789",
+        "orgCode": "5566789",
+        "contactMail": "test@bestsign.cn",
+        "contactMobile": "13800001234",
+        "legalPerson": "张三",
+        "legalPersonIdentity": "100123199001010011",
+        "legalPersonIdentityType": "0",
+        "legalPersonMobile": "17712341234",
+        "province": "浙江省",
+        "city": "杭州市",
+        "address": "xx路xx号"
+    },
+    "applyCert": "1"
+}
