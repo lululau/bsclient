@@ -28,7 +28,7 @@ module BSClient
 
     desc '', ''
     def create_user_image(account, text, size="30", color="red")
-      req_content = {account: account, text: text, fontSize: 10, fontColor: color}.to_json
+      req_content = {account: account, text: text, fontSize: size, fontColor: color}.to_json
       app = App.new(options, Config.create(options[:env]))
       print app.create_user_image(req_content)
     end
