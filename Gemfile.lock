@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bsclient (0.1.0)
+    bsclient (0.1.1)
       faraday
       pry (~> 0.13.1)
       pry-byebug (~> 3.9.0)
