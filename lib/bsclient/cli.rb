@@ -40,6 +40,34 @@ module BSClient
       print app.download_user_image(params)
     end
 
+    desc '', ''
+    def get(url, *raw_params)
+      params = raw_params.each_with_object({}) do |param, h|
+        k, v = param.split('=')
+        h[k.to_sym] = v
+      end
+      app = App.new(options, Config.create(options[:env]))
+      print app.get(url, params)
+    end
+
+    desc '', ''
+    def post(url, *args)
+      if not STDIN.isatty
+        params = JSON.parse(STDIN.read)
+      elsif File.exist?(args.first)
+        params = File.read(args.first)
+      else
+        params = args.each_with_object({}) do |param, h|
+          k, v = param.split('=')
+          value = v
+          value = JSON.parse(v[1..-1]) if v[0] == ':'
+          h[k.to_sym] = value
+        end
+      end
+      app = App.new(options, Config.create(options[:env]))
+      print app.post_json(url, params)
+    end
+
     # desc '', ''
     # class_option :out, type: :string, aliases: ['-o'], desc: 'Specify output file'
     # def sign(filename = nil)
