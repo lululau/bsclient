@@ -8,7 +8,7 @@ module BSClient
     class_option :conf, type: :string, aliases: ['-c'], desc: 'Specify config file'
     class_option :verbose, type: :boolean, aliases: ['-v'], desc: 'Verbose printing'
 
-    desc '', ''
+    desc 'register_account(filename = nil)', 'nil means STDIN'
     def register_account(filename = nil)
       req_content = if filename
                       IO.read(filename)
@@ -20,27 +20,27 @@ module BSClient
       print app.register_account(req_content)
     end
 
-    desc '', ''
+    desc 'query_registration(task_id, account)', ''
     def query_registration(task_id, account)
       app = App.new(options, Config.create(options[:env]))
       print app.query_registration(task_id, account)
     end
 
-    desc '', ''
+    desc 'create_user_image(account, text, size="30", color="red")', ''
     def create_user_image(account, text, size="30", color="red")
       req_content = {account: account, text: text, fontSize: size, fontColor: color}.to_json
       app = App.new(options, Config.create(options[:env]))
       print app.create_user_image(req_content)
     end
 
-    desc '', ''
+    desc 'download_user_image(account)', ''
     def download_user_image(account)
       params = {account: account, imageName: ''}
       app = App.new(options, Config.create(options[:env]))
       print app.download_user_image(params)
     end
 
-    desc '', ''
+    desc 'get(url, *raw_params)', 'bsclient get <url> name=Jack age=10'
     def get(url, *raw_params)
       params = raw_params.each_with_object({}) do |param, h|
         k, v = param.split('=')
@@ -50,7 +50,7 @@ module BSClient
       print app.get(url, params)
     end
 
-    desc '', ''
+    desc 'post(url, *args)', 'bsclient post <url> name=Jack age=10; bsclient post <url> myfile.json; cat myfile.json | bsclient post <url>'
     def post(url, *args)
       if not STDIN.isatty
         params = JSON.parse(STDIN.read)
