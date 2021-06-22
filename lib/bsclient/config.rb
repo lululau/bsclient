@@ -9,7 +9,6 @@ module BSClient
         file ||= File.expand_path('~/.bsclient.yml')
         yaml = YAML.load(File.read(file)) || {}
         conf = yaml[env] || {}
-        require 'pry'; binding.pry;
         new(OpenStruct.new(conf))
       end
     end
